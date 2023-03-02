@@ -1,0 +1,18 @@
+Package: partyGames
+Type: Package
+Title: Tool to Simulate Various Party Games and Develop Better
+        Strategies
+Version: 0.1.0
+Author: Kline DuBose
+Maintainer: Kline DuBose <kline.dubose@hotmail.com>
+Description: Simulation tools that help develop better strategies to win at party games.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr, rmarkdown, tinytest
+RoxygenNote: 7.2.3
+LinkingTo: Rcpp
+Imports: Rcpp
+VignetteBuilder: knitr
+Built: R 4.2.2; x86_64-w64-mingw32; 2023-03-02 23:45:03 UTC; windows
+Archs: x64

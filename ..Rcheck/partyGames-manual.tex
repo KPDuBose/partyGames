@@ -1,0 +1,69 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `partyGames'}}
+\par\bigskip{\large \today}
+\end{center}
+\inputencoding{utf8}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdftitle = {partyGames: Tool to Simulate Various Party Games and Develop Better Strategies}}}{}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Tool to Simulate Various Party Games and Develop Better
+Strategies}
+\item[Version]\AsIs{0.1.0}
+\item[Author]\AsIs{Kline DuBose}
+\item[Maintainer]\AsIs{Kline DuBose }\email{kline.dubose@hotmail.com}\AsIs{}
+\item[Description]\AsIs{Simulation tools that help develop better strategies to win at party games.}
+\item[License]\AsIs{MIT + file LICENSE}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\item[Suggests]\AsIs{knitr, rmarkdown, tinytest}
+\item[RoxygenNote]\AsIs{7.2.3}
+\item[LinkingTo]\AsIs{Rcpp}
+\item[Imports]\AsIs{Rcpp}
+\item[VignetteBuilder]\AsIs{knitr}
+\item[Archs]\AsIs{x64}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{diceSum}{Roll a dice}{diceSum}
+%
+\begin{Description}\relax
+This function rolls dice and returns the sum of the dice.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+diceSum(sides, numDice)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{sides}] An integer representing the number of sides on the dice
+
+\item[\code{numDice}] The number of dice of size 'sides' to be rolled
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A number.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+diceSum(6,1)
+diceSum(6,2)
+diceSum(100,2)
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}

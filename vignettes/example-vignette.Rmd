@@ -1,0 +1,22 @@
+---
+title: "Example Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(partyGames)
+```
+
+The goal of this package is to simulate various party game scenarios to help evaluate the effectiveness of certain strategies.
+
