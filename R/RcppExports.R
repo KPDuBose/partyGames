@@ -120,3 +120,39 @@ lrDieElephant <- function(n, pheads, sides, numDice) {
     .Call(`_partyGames_lrDieElephant`, n, pheads, sides, numDice)
 }
 
+#'Play a White Elephant Game with dice and a coin
+#'
+#'Simulates a White Elephant party game. The gift starts at position "1" and
+#'each player rolls dice and flips a randomly chosen coin from two available.
+#'If the coin is heads, the present gets passed to the left however many seats
+#'the dice have shown. If the coin is tails, the present gets passed to the
+#'right however many seats the dice show.
+#'
+#'
+#'@name twoCoinDieElephant
+#'
+#'
+#'@param n Number of participants in the game
+#'@param pheads1 The probability of heads, or passing the present to the left if using the first coin
+#'@param pheads2 The probability of heads, or passing the present to the left if using the second coin
+#'@param sides Number of sides on the dice
+#'@param numDice Number of dice to be rolled
+#'
+#'@return A list containing the final position of the present and a vector
+#'representing the movement of the present, where negative numbers represent
+#'movement to the left and positive number represent movement to the right.
+#'
+#'@examples
+#'# 10 people playing with a six sided dice and a fair coin
+#'lrDieElephant(10, 0.5, 6, 1)
+#'
+#'# 20 people playing with two six-sided dice and an unfair coin (pheads = 0.7)
+#'lrDieElephant(20, 0.7, 6, 2)
+#'
+#'@export
+NULL
+
+twoCoinDieElephant <- function(n, pheads1, pheads2, sides, numDice) {
+    .Call(`_partyGames_twoCoinDieElephant`, n, pheads1, pheads2, sides, numDice)
+}
+

@@ -5,22 +5,24 @@ using namespace Rcpp;
 //'Play a White Elephant Game with dice and a coin
 //'
 //'Simulates a White Elephant party game. The gift starts at position "1" and
-//'each player rolls dice and flips a coin. If the coin is heads, the present
-//'gets passed to the left however many seats the dice have shown. If the coin is
-//'tails, the present gets passed to the right however many seats the dice show.
+//'each player rolls dice and flips a randomly chosen coin from two available.
+//'If the coin is heads, the present gets passed to the left however many seats
+//'the dice have shown. If the coin is tails, the present gets passed to the
+//'right however many seats the dice show.
 //'
 //'
-//'@name lrDieElephant
+//'@name twoCoinDieElephant
 //'
 //'
 //'@param n Number of participants in the game
-//'@param pheads The probability of heads, or passing the present to the left
-//'@param sides Number of sides the dice have
+//'@param pheads1 The probability of heads, or passing the present to the left if using the first coin
+//'@param pheads2 The probability of heads, or passing the present to the left if using the second coin
+//'@param sides Number of sides on the dice
 //'@param numDice Number of dice to be rolled
 //'
 //'@return A list containing the final position of the present and a vector
 //'representing the movement of the present, where negative numbers represent
-//'movement to the left and postive number represent movement to the right.
+//'movement to the left and positive number represent movement to the right.
 //'
 //'@examples
 //'# 10 people playing with a six sided dice and a fair coin
@@ -36,27 +38,32 @@ using namespace Rcpp;
 
 
  // [[Rcpp::export]]
- List lrDieElephant(
+ List twoCoinDieElephant(
      int n,
-     double pheads,
+     double pheads1,
+     double pheads2,
      int sides,
      int numDice
  ){
    int player = 1;
    int roll = 0;
-   int coin = 0;
+   int flip = 0;
+
+   double pheads = 0;
+
+   NumericVector coins = {pheads1, pheads2};
 
    IntegerVector leftRight = {-1, 1};
 
    IntegerVector movement(n);
 
-   NumericVector probs = {pheads, 1 - pheads};
-
-   for (int i = 0; i < n; ++i){
+    for (int i = 0; i < n; ++i){
      roll = diceSum(sides, numDice);
-     coin = Rcpp::sample(leftRight, 1, true, probs)[0];
-     movement[i] = roll * coin;
-     player = player + roll * coin;
+     pheads = Rcpp::sample(coins, 1, true)[0];
+     NumericVector probs = {pheads, 1 - pheads};
+     flip = Rcpp::sample(leftRight, 1, true, probs)[0];
+     movement[i] = roll * flip;
+     player = player + roll * flip;
    }
 
 
