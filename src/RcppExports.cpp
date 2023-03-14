@@ -22,6 +22,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// dieElephant
+List dieElephant(int n, int sides, int numDice);
+RcppExport SEXP _partyGames_dieElephant(SEXP nSEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
+    Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
+    rcpp_result_gen = Rcpp::wrap(dieElephant(n, sides, numDice));
+    return rcpp_result_gen;
+END_RCPP
+}
 // leftRightElephant
 List leftRightElephant(int n, double pheads);
 RcppExport SEXP _partyGames_leftRightElephant(SEXP nSEXP, SEXP pheadsSEXP) {
@@ -37,6 +50,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_partyGames_diceSum", (DL_FUNC) &_partyGames_diceSum, 2},
+    {"_partyGames_dieElephant", (DL_FUNC) &_partyGames_dieElephant, 3},
     {"_partyGames_leftRightElephant", (DL_FUNC) &_partyGames_leftRightElephant, 2},
     {NULL, NULL, 0}
 };

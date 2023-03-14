@@ -23,6 +23,38 @@ diceSum <- function(sides, numDice) {
 #'Play a White Elephant Game
 #'
 #'Simulates a White Elephant party game. The gift starts at position "1" and
+#'each player rolls a dice. For each number rolled, the present moves around the
+#'circle that many positions in a counter-clockwise fashion.
+#'
+#'
+#'
+#'@name dieElephant
+#'
+#'
+#'@param n Number of participants in the game
+#'@param sides Number of sides the dice have
+#'@param numDice Number of dice to be rolled
+#'
+#'@return A list containing the final position of the present and a vector
+#'representing the movement of the present.
+#'
+#'@examples
+#'# 10 people playing with a six-sided die
+#'dieElephant(10, 6, 1)
+#'
+#'# 20 people playing with two six-sided dice
+#'dieElephant(20, 6, 2)
+#'
+#'@export
+NULL
+
+dieElephant <- function(n, sides, numDice) {
+    .Call(`_partyGames_dieElephant`, n, sides, numDice)
+}
+
+#'Play a White Elephant Game
+#'
+#'Simulates a White Elephant party game. The gift starts at position "1" and
 #'proceeds to move around the circle as each person flips a coin. If heads, the
 #' present moves to the left. If tails, the present moves to the right.
 #'
