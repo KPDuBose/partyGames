@@ -22,9 +22,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// leftRightElephant
+List leftRightElephant(int n, double pheads);
+RcppExport SEXP _partyGames_leftRightElephant(SEXP nSEXP, SEXP pheadsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type pheads(pheadsSEXP);
+    rcpp_result_gen = Rcpp::wrap(leftRightElephant(n, pheads));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_partyGames_diceSum", (DL_FUNC) &_partyGames_diceSum, 2},
+    {"_partyGames_leftRightElephant", (DL_FUNC) &_partyGames_leftRightElephant, 2},
     {NULL, NULL, 0}
 };
 

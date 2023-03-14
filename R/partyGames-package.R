@@ -1,3 +1,3 @@
 #' @importFrom Rcpp evalCpp
-#' @useDynLib partyGames
+#' @useDynLib partyGames, .registration = TRUE
 NULL
