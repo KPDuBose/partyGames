@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//'Roll a dice
+//'Simulate rolling a dice and getting the sum
 //'
 //'This function rolls dice and returns the sum of the dice.
 //'

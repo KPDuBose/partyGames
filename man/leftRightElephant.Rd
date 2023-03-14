@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{leftRightElephant}
 \alias{leftRightElephant}
-\title{Play a White Elephant Game}
+\title{Play a White Elephant Game with a coin}
 \usage{
 leftRightElephant(n, pheads)
 }

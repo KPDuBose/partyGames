@@ -3,5 +3,6 @@
 export(diceSum)
 export(dieElephant)
 export(leftRightElephant)
+export(lrDieElephant)
 importFrom(Rcpp,evalCpp)
 useDynLib(partyGames, .registration = TRUE)

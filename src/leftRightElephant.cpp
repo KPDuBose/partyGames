@@ -1,7 +1,7 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-//'Play a White Elephant Game
+//'Play a White Elephant Game with a coin
 //'
 //'Simulates a White Elephant party game. The gift starts at position "1" and
 //'proceeds to move around the circle as each person flips a coin. If heads, the

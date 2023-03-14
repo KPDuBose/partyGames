@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{dieElephant}
 \alias{dieElephant}
-\title{Play a White Elephant Game}
+\title{Play a White Elephant Game with dice}
 \arguments{
 \item{n}{Number of participants in the game}
 

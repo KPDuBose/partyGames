@@ -2,7 +2,7 @@
 using namespace Rcpp;
 
 
-//'Play a White Elephant Game
+//'Play a White Elephant Game with dice
 //'
 //'Simulates a White Elephant party game. The gift starts at position "1" and
 //'each player rolls a dice. For each number rolled, the present moves around the
@@ -40,7 +40,6 @@ List dieElephant(
   int numDice
 ){
   int player = 1;
-  // int played = 0;
   int roll = 0;
   IntegerVector movement(n);
 

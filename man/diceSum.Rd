@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{diceSum}
 \alias{diceSum}
-\title{Roll a dice}
+\title{Simulate rolling a dice and getting the sum}
 \usage{
 diceSum(sides, numDice)
 }
