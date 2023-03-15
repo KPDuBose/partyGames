@@ -31,13 +31,13 @@ simulateElephant <- function(n,
   if(dice == FALSE){
     if(coins == 1){
       cl <- parallel::makeCluster(2)
-      ans <- parallel::parSapply(cl, 1:5, function(i) replicate(iter/5, leftRightElephant(n, pheads), simplify = FALSE))
+      ans <- parallel::parSapply(cl, 1, function(i) replicate(iter, leftRightElephant(n, pheads), simplify = FALSE))
       parallel::stopCluster(cl)
     }
 
     if(coins == 2){
       cl <- parallel::makeCluster(2)
-      ans <- parallel::parSapply(cl, 1:5, function(i) replicate(iter/5, twoCoinElephant(n, pheads1 = pheads, pheads2 = pheads2), simplify = FALSE))
+      ans <- parallel::parSapply(cl, 1, function(i) replicate(iter, twoCoinElephant(n, pheads1 = pheads, pheads2 = pheads2), simplify = FALSE))
       parallel::stopCluster(cl)
     }
   }
@@ -45,19 +45,19 @@ simulateElephant <- function(n,
   if(dice == TRUE){
     if(coins == 0){
       cl <- parallel::makeCluster(2)
-      ans <- parallel::parSapply(cl, 1:5, function(i) replicate(iter/5, dieElephant(n, sides = sides, numDice = numDice), simplify = FALSE))
+      ans <- parallel::parSapply(cl, 1, function(i) replicate(iter, dieElephant(n, sides = sides, numDice = numDice), simplify = FALSE))
       parallel::stopCluster(cl)
     }
 
     if(coins == 1){
       cl <- parallel::makeCluster(2)
-      ans <- parallel::parSapply(cl, 1:5, function(i) replicate(iter/5, lrDieElephant(n, pheads = pheads, sides = sides, numDice = numDice), simplify = FALSE))
+      ans <- parallel::parSapply(cl, 1, function(i) replicate(iter, lrDieElephant(n, pheads = pheads, sides = sides, numDice = numDice), simplify = FALSE))
       parallel::stopCluster(cl)
     }
 
     if(coins == 2){
       cl <- parallel::makeCluster(2)
-      ans <- parallel::parSapply(cl, 1:5, function(i) replicate(iter/5, twoCoinDieElephant(n, pheads1 = pheads, pheads2 = pheads2, sides = sides, numDice = numDice), simplify = FALSE))
+      ans <- parallel::parSapply(cl, 1, function(i) replicate(iter, twoCoinDieElephant(n, pheads1 = pheads, pheads2 = pheads2, sides = sides, numDice = numDice), simplify = FALSE))
       parallel::stopCluster(cl)
     }
   }
