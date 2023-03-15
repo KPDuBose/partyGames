@@ -60,7 +60,7 @@ using namespace Rcpp;
    }
 
    return List::create(
-     _["movement"] = movement,
+     _["moves"] = movement,
      _["winner"] = seat
    );
 

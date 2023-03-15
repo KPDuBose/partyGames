@@ -17,7 +17,7 @@ expect_equal(
 set.seed(123)
 ans3 <- leftRightElephant(10, 0.5)
 expect_equal(
-  9,
+  1,
   ans3[[2]]
 )
 

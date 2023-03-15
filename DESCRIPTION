@@ -1,10 +1,11 @@
 Package: partyGames
 Type: Package
-Title: Tool to Simulate Various Party Games and Develop Better Strategies
+Title: Simulate Party Games
 Version: 0.1.0
 Author: Kline DuBose
 Maintainer: Kline DuBose <kline.dubose@hotmail.com>
-Description: Simulation tools that help develop better strategies to win at party games.
+Description: Simulation tools that allow users to play party games and simulate
+  multiple games at a time to improve strategies.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -16,5 +17,8 @@ RoxygenNote: 7.2.3
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp
+    Rcpp,
+    methods,
+    parallel,
+    graphics
 VignetteBuilder: knitr

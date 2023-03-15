@@ -1,5 +1,5 @@
 ---
-title: "Example Vignette"
+title: "The Basics of Party Games"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example-vignette}
@@ -18,5 +18,13 @@ knitr::opts_chunk$set(
 library(partyGames)
 ```
 
-The goal of this package is to simulate various party game scenarios to help evaluate the effectiveness of certain strategies.
+The goal of this package is to simulate various party game scenarios to help evaluate the effectiveness of certain strategies. This vignette hopes to share some of the capabilities of this package.
+
+# Dice Rolling
+
+One of the functions simply rolls a dice.
+
+```{r, eval=FALSE}
+diceSum(sides, numDice)
+```
 

@@ -33,8 +33,7 @@ simulateElephant(
 \item{numDice}{Number of dice rolled}
 }
 \value{
-Various graphics and tables showing the number of times a seat was
-selected over many iterations of the game.
+A list of clas `elphList`
 }
 \description{
 A general function to simulate various types of White Elephant games.

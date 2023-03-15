@@ -11,8 +11,7 @@
 #' @param sides Number of sides on dice
 #' @param numDice Number of dice rolled
 #'
-#' @return Various graphics and tables showing the number of times a seat was
-#' selected over many iterations of the game.
+#' @return A list of clas `elphList`
 #'
 #' @export
 
@@ -63,10 +62,8 @@ simulateElephant <- function(n,
     }
   }
 
-total <- sapply(ans, "[[", "winner")
+class(ans) <- c("elphList", "list")
 
-tableTotal <- table(total)
-
-return(c(tableTotal))
+return(ans)
 
 }
