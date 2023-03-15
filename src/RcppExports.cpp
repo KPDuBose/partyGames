@@ -76,6 +76,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// twoCoinElephant
+List twoCoinElephant(int n, double pheads1, double pheads2);
+RcppExport SEXP _partyGames_twoCoinElephant(SEXP nSEXP, SEXP pheads1SEXP, SEXP pheads2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type pheads1(pheads1SEXP);
+    Rcpp::traits::input_parameter< double >::type pheads2(pheads2SEXP);
+    rcpp_result_gen = Rcpp::wrap(twoCoinElephant(n, pheads1, pheads2));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_partyGames_diceSum", (DL_FUNC) &_partyGames_diceSum, 2},
@@ -83,6 +96,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_partyGames_leftRightElephant", (DL_FUNC) &_partyGames_leftRightElephant, 2},
     {"_partyGames_lrDieElephant", (DL_FUNC) &_partyGames_lrDieElephant, 4},
     {"_partyGames_twoCoinDieElephant", (DL_FUNC) &_partyGames_twoCoinDieElephant, 5},
+    {"_partyGames_twoCoinElephant", (DL_FUNC) &_partyGames_twoCoinElephant, 3},
     {NULL, NULL, 0}
 };
 

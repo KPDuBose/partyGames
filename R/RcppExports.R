@@ -143,16 +143,49 @@ lrDieElephant <- function(n, pheads, sides, numDice) {
 #'movement to the left and positive number represent movement to the right.
 #'
 #'@examples
-#'# 10 people playing with a six sided dice and a fair coin
-#'lrDieElephant(10, 0.5, 6, 1)
+#'# 10 people playing with a six sided dice and a fair coin and and unfair coin
+#'twoCoinDieElephant(10, 0.5, 0.7, 6, 1)
 #'
-#'# 20 people playing with two six-sided dice and an unfair coin (pheads = 0.7)
-#'lrDieElephant(20, 0.7, 6, 2)
+#'# 20 people playing with two six-sided dice and two unfair coins (pheads1 = 0.3, pheads2 = 0.7)
+#'twoCoinDieElephant(20, 0.3, 0.7, 6, 2)
 #'
 #'@export
 NULL
 
 twoCoinDieElephant <- function(n, pheads1, pheads2, sides, numDice) {
     .Call(`_partyGames_twoCoinDieElephant`, n, pheads1, pheads2, sides, numDice)
+}
+
+#'Play a White Elephant Game with two coins
+#'
+#'Simulates a White Elephant party game. The gift starts at position "1" and
+#'each player rolls dice and flips a randomly chosen coin from two available.
+#'If the coin is heads, the present gets passed one to the left. If tails, the
+#'present gets passed one to the right.
+#'
+#'
+#'@name twoCoinElephant
+#'
+#'
+#'@param n Number of participants in the game
+#'@param pheads1 The probability of heads, or passing the present to the left if using the first coin
+#'@param pheads2 The probability of heads, or passing the present to the left if using the second coin
+#'
+#'@return A list containing the final position of the present and a vector
+#'representing the movement of the present, where negative numbers represent
+#'movement to the left and positive number represent movement to the right.
+#'
+#'@examples
+#'# 10 people playing with a fair coin and an unfair coin
+#'twoCoinElephant(10, 0.5, 0.7)
+#'
+#'# 20 people playing with two unfair coins (pheads1 = 0.3, pheads2 = 0.7)
+#'twoCoinElephant(20, 0.3, 0.7)
+#'
+#'@export
+NULL
+
+twoCoinElephant <- function(n, pheads1, pheads2) {
+    .Call(`_partyGames_twoCoinElephant`, n, pheads1, pheads2)
 }
 

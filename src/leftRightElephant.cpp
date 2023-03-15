@@ -42,10 +42,14 @@ using namespace Rcpp;
 
    IntegerVector leftRight = {-1, 1};
    NumericVector probs = {pheads, 1 - pheads};
+   int seat = 1;
+   IntegerVector movement(n);
 
-   IntegerVector movement = Rcpp::sample(leftRight, n, true, probs);
+   for (int i = 0; i < n; ++i){
+    movement[i] = Rcpp::sample(leftRight, n, true, probs)[0];
 
-   int seat = 1 + sum(movement);
+    seat = seat + movement[i];
+   }
 
    while (seat < 1){
      seat = seat + n;
