@@ -4,12 +4,10 @@
 \alias{plotElephant}
 \title{Plot results of a White Elephant simulation}
 \usage{
-plotElephant(sim, ...)
+plotElephant(sim)
 }
 \arguments{
 \item{sim}{An object of class `elphList` or `elphSum` to be summarized}
-
-\item{...}{Arguments to be passed to other methods. See `barplot` for further details.}
 }
 \value{
 A plot showing the distribution of each winning seat and how often they won.

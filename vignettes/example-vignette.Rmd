@@ -1,5 +1,6 @@
 ---
 title: "The Basics of Party Games"
+author: "Kline DuBose"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{example-vignette}
@@ -22,9 +23,172 @@ The goal of this package is to simulate various party game scenarios to help eva
 
 # Dice Rolling
 
-One of the functions simply rolls a dice.
+## diceSum
 
 ```{r, eval=FALSE}
 diceSum(sides, numDice)
 ```
+
+This function rolls a given number of dice with a given number of sides and has two arguments, `sides` and `numDice`. `sides` designates how many sides the dice have and `numDice` designates how many dice are going to be rolled. 
+
+If we wished to roll a single six-sided die, we would input:
+```{r}
+diceSum(6, 1)
+```
+And our output is the number we rolled.
+
+Now, let's roll three 100-sided dice just to see what it looks like:
+```{r}
+diceSum(100, 3)
+```
+
+# White Elephant Games
+
+The package can also simulate various white elephant games with some differing rules since everyone plays this game differently or knows it by a different name.
+
+## leftRightElephant
+
+```{r eval=FALSE}
+leftRightElephant(n, pheads)
+```
+
+This version of the game is played using a coin. A certain number of friends get together and each has a gift. Everyone takes turns flipping a coin and based on if the result is heads or tails, each participant passes the present clockwise (to the left) if heads or counter-clockwise (to the right) if tails. 
+
+`n` designates how many people are participating in the game. `pheads` designates the probability of heads.
+
+The present starts in position 1, the person sitting to the right of position 1 is in position 2, to the right of position 3 is position 4, and so on. 
+
+### Example
+
+Let's say 15 friends gather together to play. The coin is fair, or `pheads` is 0.5.
+
+```{r}
+leftRightElephant(15, 0.5)
+```
+
+Movement of the present to the right is designated by a 1 and movement to the left is designated by -1. The position of the winner is also noted. 
+
+## dieElephant
+
+```{r eval=FALSE}
+dieElephant(n, sides, numDice)
+```
+
+This version of the game is played with dice. Each participant rolls a dice and passes counter-clockwise(to the right) the number of the sum of the dice. Once again, the desired present starts at position 1. 
+
+`n` is the number of participants. `sides` is the number of sides on the dice. `numDice` is how many dice will be rolled.
+
+### Example
+
+Let's say 15 friends play with two six-sided dice.
+
+```{r}
+dieElephant(15, 6, 2)
+```
+
+Each roll is shown in moves. The winner is also displayed.
+
+## lrDieElephant
+
+```{r eval=FALSE}
+lrDieElephant(n, pheads, sides, numDice)
+```
+
+This version of the game combines the previous two. Each participant rolls a die and flips a coin. As before, if the coin is heads, pass the present to the left. If the coin is tails, pass it to the right. Now however, you pass according to the number of dice you rolled. 
+
+### Example
+
+15 friends gathered to play with a fair coin and a single six-sided die. 
+
+```{r}
+lrDieElephant(15, 0.5, 6, 1)
+```
+
+Negative numbers in movement indicate a pass to the left and positive numbers indicate a pass to the right. Winner is also indicated.
+
+## twoCoinElephant
+
+```{r eval=FALSE}
+twoCoinElephant(n, pheads1, pheads2)
+```
+
+This version of the game builds on the idea of using a coin. What if there were two coins with different probability of flipping heads, a fair coin and an unfair coin? 
+
+`n` is the number of participants in the game. `pheads1` and `pheads2` represent the probability of heads on each coin respectively. 
+
+We give each participant the chance to choose the coin that they use, at random, and flip it. As before, the desired present starts in position 1.
+
+### Example
+
+15 friends gather to play. The first coin is fair, the second coin is less likely to land on heads(`pheads2` = 0.3).
+
+```{r}
+twoCoinElephant(15, 0.5, 0.3)
+```
+
+1 indicates the present moved clockwise and -1 indicates the present moved to the left. Winner is also indicated.
+
+## twoCoinDieElephant
+
+```{r eval=FALSE}
+twoCoinDieElephant(n, pheads1, pheads2, sides, numDice)
+```
+
+This combines the two coin version of the game with the added effect of rolling dice. Again, the present starts in position 1 and moves to the left or right based on a coin flip. Each participant randomly chooses a coin, flips it, and then rolls the dice to see how many spaces the present moves. 
+
+### Example
+
+15 friends gather to play with two unfair coins, with probability of flipping heads 0.3 and 0.7 respectively. They roll two four-sided dice.
+
+```{r}
+twoCoinDieElephant(15, 0.3, 0.7, 4, 2)
+```
+
+
+# Simulation
+
+The package also allows to simulate many iterations of the game at once. 
+
+## White Elephant
+
+```{r eval=FALSE}
+simulateElephant(n, dice, coins, iter, pheads, pheads2, sides, numDice)
+```
+
+This function runs many simulations of the chosen white elephant game. It returns an object of class `elphList`, and is basically a list of lists for each iteration of the game. It is recommended you save as a separate object for use later.
+
+We will demonstrate this by simulating 1500 games played by a group of 20 people. There are two coins, the first is fair and the second has a probability of heads of 0.9. Three four-sided dice will be rolled. 
+
+```{r}
+games <- simulateElephant(20, dice = TRUE, coins = 2, iter = 1500, pheads = 0.5, 
+                          pheads2 = 0.9, sides = 4, numDice = 3)
+```
+
+Now, we will summarize the information with:
+```{r eval=FALSE}
+summaryElephant(sim)
+```
+
+This requires an object of class `elphList` and returns an object of class `elphSum` which has two tables, one with the counts of the moves made and the other with counts of how many times each seat won. 
+
+```{r}
+games.summary <- summaryElephant(games)
+games.summary
+```
+
+Lastly, let's look at a graph of the distribution of each seat winning. 
+```{r eval=FALSE}
+plotElephant(sim)
+```
+
+`sim` in this case, can be either a `elphList` or `elphSum` class object. We will look at examples using both types of objects to show that the output is the same.
+
+```{r eval=FALSE}
+# elphList object
+plotElephant(games)
+
+# elphSum object
+plotElephant(games.summary)
+```
+
 

@@ -3,7 +3,6 @@
 #' A general function to plot the results of a White Elephant simulation.
 #'
 #' @param sim An object of class `elphList` or `elphSum` to be summarized
-#' @param ... Arguments to be passed to other methods. See `barplot` for further details.
 #'
 #' @return A plot showing the distribution of each winning seat and how often they won.
 #'
@@ -12,7 +11,7 @@
 #'
 
 
-plotElephant <- function(sim, ...){
+plotElephant <- function(sim){
   if(!(is(sim, "elphList") | is(sim, "elphSum"))) stop("'sim' must be an 'elphList' or 'elphSum' class object")
 
   if(is(sim, "elphList")){
