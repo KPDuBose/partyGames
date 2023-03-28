@@ -7,16 +7,14 @@
 #' @return A plot showing the distribution of each winning seat and how often they won.
 #'
 #' @export
-#'
-#'
-plot.partyGames <- function(sim){
+plot.partyGames <- function(sim, ...){
   if(inherits(sim, "elphList") | inherits(sim, "elphSum")){
 
     if(inherits(sim, "elphList")){
       sim <- summary.partyGames(sim)
     }
 
-  barplot(
+  graphics::barplot(
     sim[[1]] / sum(sim[[1]]),
     ylim = c(0, max(sim[[1]] / sum(sim[[1]])) + 0.05),
     sub = sprintf("Distribution of %i simulated white elephant games", sum(sim[[1]])),

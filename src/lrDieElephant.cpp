@@ -30,13 +30,11 @@ using namespace Rcpp;
 //'lrDieElephant(20, 0.7, 6, 2)
 //'
 //'@export
+int diceSum(int sides, int numDice);
 
 
- int diceSum(int sides, int numDice);
-
-
- // [[Rcpp::export]]
- List lrDieElephant(
+// [[Rcpp::export]]
+List lrDieElephant(
      int n,
      double pheads,
      int sides,

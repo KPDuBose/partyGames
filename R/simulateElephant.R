@@ -14,8 +14,6 @@
 #' @return A list of clas `elphList`
 #'
 #' @export
-
-
 simulateElephant <- function(n,
                              dice = FALSE,
                              coins = 1,
@@ -62,7 +60,7 @@ simulateElephant <- function(n,
     }
   }
 
-class(ans) <- c("elphList", "list")
+ans <- structure(ans, class = c("elphList", "list"))
 
 return(ans)
 

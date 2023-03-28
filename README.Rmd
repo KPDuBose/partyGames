@@ -33,11 +33,12 @@ devtools::install_github("KPDuBose/partyGames")
 
 Simulate 1500 White Elephant Games under different conditions.
 
-```{r example}
+```{r example, eval=FALSE}
 library(partyGames)
 games <- simulateElephant(15, dice = TRUE, coins = 1, iter = 1500, pheads = 0.5, sides = 6, numDice = 1)
-summaryElephant(games)
+summary.partyGames(games)
 class(games)
-plotElephant(summaryElephant(games))
+plot.partyGames(games)
+plot.partyGames(summary.partyGames(games))
 ```
 

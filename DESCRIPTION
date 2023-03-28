@@ -18,7 +18,6 @@ LinkingTo:
     Rcpp
 Imports: 
     Rcpp,
-    methods,
     parallel,
     graphics
 VignetteBuilder: knitr

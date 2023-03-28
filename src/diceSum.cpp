@@ -10,7 +10,7 @@ using namespace Rcpp;
 //'
 //'@param sides An integer representing the number of sides on the dice
 //'@param numDice The number of dice of size 'sides' to be rolled
-//'@return A number.
+//'@return A number representing the sum of the dice rolled.
 //'@examples
 //'diceSum(6,1)
 //'diceSum(6,2)

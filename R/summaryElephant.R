@@ -6,11 +6,10 @@
 #'
 #' @return An object of class `elphSum` containing a table of moves over a
 #' simulation and a table of times each chair won.
-#'
 #' @export
 #'
 #'
-summary.partyGames <- function(sim){
+summary.partyGames <- function(sim, ...){
   if (inherits(sim, "elphList")){
 
   moves <- sapply(sim, "[[", "moves")
@@ -23,7 +22,7 @@ summary.partyGames <- function(sim){
 
   elphSum <- list(winner = winner, moves = moves)
 
-  class(elphSum) <- c("elphSum", "list")
+  elphSum <- structure(elphSum, class = c("elphSum", "list"))
 
   return(elphSum)
 

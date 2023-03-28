@@ -12,7 +12,7 @@ diceSum(sides, numDice)
 \item{numDice}{The number of dice of size 'sides' to be rolled}
 }
 \value{
-A number.
+A number representing the sum of the dice rolled.
 }
 \description{
 This function rolls dice and returns the sum of the dice.
