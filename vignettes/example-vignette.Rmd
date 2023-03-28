@@ -181,12 +181,14 @@ Lastly, let's look at a graph of the distribution of each seat winning.
 plot.partyGames(sim)
 ```
 
-`sim` in this case, can be either a `elphList` or `elphSum` class object. We will look at examples using both types of objects to show that the output is the same.
+`sim` in this case, can be either a `elphList` or `elphSum` class object. We will look at examples using both classes of objects to show that the output is the same.
 
-```{r eval=FALSE}
+```{r, fig.align='center', fig.height=3, fig.width=5}
 # elphList object
 plot.partyGames(games)
+```
 
+```{r, fig.align='center', fig.height=3, fig.width=5}
 # elphSum object
 plot.partyGames(games.summary)
 ```

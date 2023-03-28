@@ -4,7 +4,7 @@
 \alias{summary.partyGames}
 \title{Summarize a simulation}
 \usage{
-\method{summary}{partyGames}(sim, ...)
+\method{summary}{partyGames}(sim)
 }
 \arguments{
 \item{sim}{An object of class `elphList` to be summarized}

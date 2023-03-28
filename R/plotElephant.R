@@ -6,6 +6,7 @@
 #'
 #' @return A plot showing the distribution of each winning seat and how often they won.
 #'
+#' @export plot.partyGames
 #' @export
 plot.partyGames <- function(sim, ...){
   if(inherits(sim, "elphList") | inherits(sim, "elphSum")){

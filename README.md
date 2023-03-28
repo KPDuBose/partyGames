@@ -26,7 +26,22 @@ Simulate 1500 White Elephant Games under different conditions.
 library(partyGames)
 games <- simulateElephant(15, dice = TRUE, coins = 1, iter = 1500, pheads = 0.5, sides = 6, numDice = 1)
 summary.partyGames(games)
+#> $winner
+#> winner
+#>   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+#>  99 119 112  95 108 106 100 105  91  91  89  89 100 104  92 
+#> 
+#> $moves
+#> moves
+#>   -6   -5   -4   -3   -2   -1    1    2    3    4    5    6 
+#> 1894 1883 1837 1847 1815 1866 1934 1907 1831 1950 1817 1919 
+#> 
+#> attr(,"class")
+#> [1] "elphSum" "list"
 class(games)
+#> [1] "elphList" "list"
 plot.partyGames(games)
 plot.partyGames(summary.partyGames(games))
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
