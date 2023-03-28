@@ -3,6 +3,7 @@
 #' A general function to plot the results of a White Elephant simulation.
 #'
 #' @param sim An object of class `elphList` or `elphSum` to be summarized
+#' @param ... Additional arguments in `plot` function
 #'
 #' @return A plot showing the distribution of each winning seat and how often they won.
 #'

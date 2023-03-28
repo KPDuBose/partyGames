@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{sim}{An object of class `elphList` or `elphSum` to be summarized}
+
+\item{...}{Additional arguments in `plot` function}
 }
 \value{
 A plot showing the distribution of each winning seat and how often they won.

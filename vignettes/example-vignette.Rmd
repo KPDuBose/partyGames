@@ -159,7 +159,7 @@ This function runs many simulations of the chosen white elephant game. It return
 
 We will demonstrate this by simulating 1500 games played by a group of 20 people. There are two coins, the first is fair and the second has a probability of heads of 0.9. Three four-sided dice will be rolled. 
 
-```{r cache=TRUE}
+```{r}
 games <- simulateElephant(20, dice = TRUE, coins = 2, iter = 1500, pheads = 0.5, 
                           pheads2 = 0.9, sides = 4, numDice = 3)
 ```
