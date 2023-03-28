@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # partyGames
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/UofUEpiBio/partyGames/workflows/R-CMD-check/badge.svg)](https://github.com/UofUEpiBio/partyGames/actions)
 <!-- badges: end -->
 
 The goal of partyGames is to simulate various party games and help you devise a better strategy to win.
