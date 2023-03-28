@@ -4,10 +4,10 @@
 \alias{plot.partyGames}
 \title{Plot results of a White Elephant simulation}
 \usage{
-\method{plot}{partyGames}(sim, ...)
+\method{plot}{partyGames}(x, ...)
 }
 \arguments{
-\item{sim}{An object of class `elphList` or `elphSum` to be summarized}
+\item{x}{An object of class `elphList` or `elphSum` to be summarized}
 
 \item{...}{Additional arguments in `plot` function}
 }

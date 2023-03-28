@@ -4,12 +4,12 @@
 \alias{summary.partyGames}
 \title{Summarize a simulation}
 \usage{
-\method{summary}{partyGames}(sim, ...)
+\method{summary}{partyGames}(object, ...)
 }
 \arguments{
-\item{sim}{An object of class `elphList` to be summarized}
+\item{object}{An object of class `elphList` to be summarized}
 
-\item{...}{Additional arguments}
+\item{...}{Additional arguments affecting the summary produced}
 }
 \value{
 An object of class `elphSum` containing a table of moves over a
