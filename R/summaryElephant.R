@@ -10,9 +10,8 @@
 #' @export
 #'
 #'
-
-summaryElephant <- function(sim){
-  if (!is(sim, "elphList")) stop("sim must be a 'elphList' class object")
+summary.partyGames <- function(sim){
+  if (inherits(sim, "elphList")){
 
   moves <- sapply(sim, "[[", "moves")
 
@@ -27,4 +26,8 @@ summaryElephant <- function(sim){
   class(elphSum) <- c("elphSum", "list")
 
   return(elphSum)
+
+  }
+
 }
+

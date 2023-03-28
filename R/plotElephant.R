@@ -9,15 +9,12 @@
 #' @export
 #'
 #'
+plot.partyGames <- function(sim){
+  if(inherits(sim, "elphList") | inherits(sim, "elphSum")){
 
-
-plotElephant <- function(sim){
-  if(!(is(sim, "elphList") | is(sim, "elphSum"))) stop("'sim' must be an 'elphList' or 'elphSum' class object")
-
-  if(is(sim, "elphList")){
-    sim <- summaryElephant(sim)
-  }
-
+    if(inherits(sim, "elphList")){
+      sim <- summary.partyGames(sim)
+    }
 
   barplot(
     sim[[1]] / sum(sim[[1]]),
@@ -28,4 +25,25 @@ plotElephant <- function(sim){
     border = "dimgray"
   )
 
+  }
+
 }
+
+# x <- structure(1, class = c("a", "b"))
+#
+#
+# y <- structure(1, class = c("a", "c"))
+#
+#
+# plot.a <- function(x) {
+#
+#   if (inherits(x, "b"))
+#     print("It is A!")
+#   else
+#     print("It is B!")
+#
+#   graphics::plot.default(x)
+# }
+#
+# plot(x)
+# plot(y)

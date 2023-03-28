@@ -38,6 +38,6 @@ library(partyGames)
 games <- simulateElephant(15, dice = TRUE, coins = 1, iter = 1500, pheads = 0.5, sides = 6, numDice = 1)
 summaryElephant(games)
 class(games)
-# plotElephant(summaryElephant(games))
+plotElephant(summaryElephant(games))
 ```
 

@@ -29,16 +29,18 @@ summaryElephant(games)
 #> $winner
 #> winner
 #>   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-#> 116 110  85  85 104 110 101  77 112  90  83 106 102 115 104 
+#>  98 102  98  98  91  88 101  97 112  85 108 100 106 100 116 
 #> 
 #> $moves
 #> moves
 #>   -6   -5   -4   -3   -2   -1    1    2    3    4    5    6 
-#> 1852 1874 1871 1901 1880 1857 1861 1879 1859 1835 1853 1978 
+#> 1850 1818 1925 1805 1896 1849 1890 1936 1823 1920 1935 1853 
 #> 
 #> attr(,"class")
 #> [1] "elphSum" "list"
 class(games)
 #> [1] "elphList" "list"
-# plotElephant(summaryElephant(games))
+plotElephant(summaryElephant(games))
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
