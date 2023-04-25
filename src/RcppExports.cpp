@@ -10,6 +10,18 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// diceRoll
+IntegerVector diceRoll(int sides, int numDice);
+RcppExport SEXP _partyGames_diceRoll(SEXP sidesSEXP, SEXP numDiceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
+    Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
+    rcpp_result_gen = Rcpp::wrap(diceRoll(sides, numDice));
+    return rcpp_result_gen;
+END_RCPP
+}
 // diceSum
 int diceSum(int sides, int numDice);
 RcppExport SEXP _partyGames_diceSum(SEXP sidesSEXP, SEXP numDiceSEXP) {
@@ -61,6 +73,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// monopoly
+List monopoly(int turns, int sides, int numDice);
+RcppExport SEXP _partyGames_monopoly(SEXP turnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type turns(turnsSEXP);
+    Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
+    Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
+    rcpp_result_gen = Rcpp::wrap(monopoly(turns, sides, numDice));
+    return rcpp_result_gen;
+END_RCPP
+}
 // twoCoinDieElephant
 List twoCoinDieElephant(int n, double pheads1, double pheads2, int sides, int numDice);
 RcppExport SEXP _partyGames_twoCoinDieElephant(SEXP nSEXP, SEXP pheads1SEXP, SEXP pheads2SEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
@@ -91,10 +116,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_partyGames_diceRoll", (DL_FUNC) &_partyGames_diceRoll, 2},
     {"_partyGames_diceSum", (DL_FUNC) &_partyGames_diceSum, 2},
     {"_partyGames_dieElephant", (DL_FUNC) &_partyGames_dieElephant, 3},
     {"_partyGames_leftRightElephant", (DL_FUNC) &_partyGames_leftRightElephant, 2},
     {"_partyGames_lrDieElephant", (DL_FUNC) &_partyGames_lrDieElephant, 4},
+    {"_partyGames_monopoly", (DL_FUNC) &_partyGames_monopoly, 3},
     {"_partyGames_twoCoinDieElephant", (DL_FUNC) &_partyGames_twoCoinDieElephant, 5},
     {"_partyGames_twoCoinElephant", (DL_FUNC) &_partyGames_twoCoinElephant, 3},
     {NULL, NULL, 0}

@@ -2,10 +2,12 @@
 
 S3method(plot,partyGames)
 S3method(summary,partyGames)
+export(diceRoll)
 export(diceSum)
 export(dieElephant)
 export(leftRightElephant)
 export(lrDieElephant)
+export(monopoly)
 export(plot.partyGames)
 export(simulateElephant)
 export(summary.partyGames)

@@ -3,7 +3,29 @@
 
 #'Simulate rolling a dice and getting the sum
 #'
-#'This function rolls dice and returns the sum of the dice.
+#'This function rolls dice and returns each different roll of the dice. If
+#'asked to roll two dice, this will return a numeric vector representing the
+#'value of each dice.
+#'
+#'@name diceRoll
+#'
+#'
+#'@param sides An integer representing the number of sides on the dice
+#'@param numDice The number of dice of size 'sides' to be rolled
+#'@return A number representing the sum of the dice rolled.
+#'@examples
+#'diceRoll(6,1)
+#'diceRoll(6,2)
+#'diceRoll(100,2)
+#'@export
+diceRoll <- function(sides = 6L, numDice = 2L) {
+    .Call(`_partyGames_diceRoll`, sides, numDice)
+}
+
+#'Simulate rolling a dice and getting the sum
+#'
+#'This function rolls dice and returns the sum of the dice. The default function
+#'rolls two six-sided dice.
 #'
 #'@name diceSum
 #'
@@ -16,7 +38,7 @@
 #'diceSum(6,2)
 #'diceSum(100,2)
 #'@export
-diceSum <- function(sides, numDice) {
+diceSum <- function(sides = 6L, numDice = 2L) {
     .Call(`_partyGames_diceSum`, sides, numDice)
 }
 
@@ -118,6 +140,30 @@ NULL
 
 lrDieElephant <- function(n, pheads, sides, numDice) {
     .Call(`_partyGames_lrDieElephant`, n, pheads, sides, numDice)
+}
+
+#'Play a game of Monopoly under specific circumstances
+#'
+#'This function allows you to look at and emulate playing a game of Monopoly
+#'with a single player. This simulation does not keep track of money or which
+#'properties that you buy, but instead rolls dice for a specified number of
+#'turns and returns information specifying how many times each space was landed
+#'on by the player during the game and how many times doubles were rolled during
+#'the game.
+#'
+#'@name monopoly
+#'
+#'
+#'@param turns An integer representing the max number of turns to be played
+#'@param sides An integer representing the size of dice to be rolled. Default is a six sided dice
+#'@param numDice The number of dice of size 'sides' to be rolled. Default is two dice.
+#'@return A list of two vectors representing the number of times each space was
+#'landed on and the number of times doubles were rolled.
+#'@export
+NULL
+
+monopoly <- function(turns = 500L, sides = 6L, numDice = 2L) {
+    .Call(`_partyGames_monopoly`, turns, sides, numDice)
 }
 
 #'Play a White Elephant Game with dice and a coin
