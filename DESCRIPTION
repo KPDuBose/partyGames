@@ -19,5 +19,6 @@ LinkingTo:
 Imports: 
     Rcpp,
     parallel,
-    graphics
+    graphics,
+    RcppArmadillo
 VignetteBuilder: knitr

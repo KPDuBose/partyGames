@@ -27,15 +27,20 @@ List monopoly(
   int sides = 6,
   int numDice = 2
 ) {
-  int n = 1;
-  int space = 0;
+  int space = 1;
+  IntegerVector timesLanded;
+
+  for (int n = 1; n < turns; ++n){
+
+  }
 
 
 
 
   return List::create(
     _["turns"] = turns,
-    _["test"]  = n
+    // _["test"]  = n,
+    _["test2"] = space
   );
 
 
