@@ -3,12 +3,15 @@
 \name{monopoly}
 \alias{monopoly}
 \title{Play a game of Monopoly under specific circumstances}
+\usage{
+monopoly(maxTurns, sides, numDice)
+}
 \arguments{
 \item{turns}{An integer representing the max number of turns to be played}
 
 \item{sides}{An integer representing the size of dice to be rolled. Default is a six sided dice}
 
-\item{numDice}{The number of dice of size 'sides' to be rolled. Default is two dice.}
+\item{numDice}{The number of dice of size 'sides' to be rolled. Default is two dice}
 }
 \value{
 A list of two vectors representing the number of times each space was
@@ -16,9 +19,29 @@ landed on and the number of times doubles were rolled.
 }
 \description{
 This function allows you to look at and emulate playing a game of Monopoly
-with a single player. This simulation does not keep track of money or which
-properties that you buy, but instead rolls dice for a specified number of
-turns and returns information specifying how many times each space was landed
-on by the player during the game and how many times doubles were rolled during
-the game.
+with a single player.
+}
+\details{
+There are a few assumptions that will be made during this simulation of Monopoly.
+First, the purpose of this function is to see which spaces are landed on more
+consistently than others, as such, we assume there is only one player. We won't
+worry about money or bankruptcy rules.
+
+Additionally, whenever the player gets sent to jail, we assume that the player
+doesn't roll doubles and stays in jail until his third turn.
+
+The Chance and Community Chest cards are based on the 2008 Classic version of
+the game. The board is also based on the US 2008 Classic board.
+}
+\examples{
+#Default Function
+monopoly()
+
+#Play with two 20-sided dice
+monopoly(500, 20, 2)
+
+}
+\seealso{
+References for the \href{https://monopoly.fandom.com/wiki/Monopoly_Board}{board}
+and for the \href{https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/}{Chance and Community Chest Cards}
 }
