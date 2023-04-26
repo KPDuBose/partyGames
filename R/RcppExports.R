@@ -162,8 +162,8 @@ lrDieElephant <- function(n, pheads, sides, numDice) {
 #'@export
 NULL
 
-monopoly <- function(turns = 500L, sides = 6L, numDice = 2L) {
-    .Call(`_partyGames_monopoly`, turns, sides, numDice)
+monopoly <- function(maxTurns = 500L, sides = 6L, numDice = 2L) {
+    .Call(`_partyGames_monopoly`, maxTurns, sides, numDice)
 }
 
 #'Play a White Elephant Game with dice and a coin

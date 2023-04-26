@@ -74,15 +74,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // monopoly
-List monopoly(int turns, int sides, int numDice);
-RcppExport SEXP _partyGames_monopoly(SEXP turnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
+List monopoly(int maxTurns, int sides, int numDice);
+RcppExport SEXP _partyGames_monopoly(SEXP maxTurnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type turns(turnsSEXP);
+    Rcpp::traits::input_parameter< int >::type maxTurns(maxTurnsSEXP);
     Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
     Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
-    rcpp_result_gen = Rcpp::wrap(monopoly(turns, sides, numDice));
+    rcpp_result_gen = Rcpp::wrap(monopoly(maxTurns, sides, numDice));
     return rcpp_result_gen;
 END_RCPP
 }
