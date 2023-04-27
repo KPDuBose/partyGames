@@ -26,7 +26,7 @@ using namespace Rcpp;
 //'
 //'@usage monopoly(maxTurns, sides, numDice)
 //'
-//'@param turns An integer representing the max number of turns to be played
+//'@param maxTurns An integer representing the max number of turns to be played
 //'@param sides An integer representing the size of dice to be rolled. Default is a six sided dice
 //'@param numDice The number of dice of size 'sides' to be rolled. Default is two dice
 //'

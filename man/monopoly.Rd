@@ -7,7 +7,7 @@
 monopoly(maxTurns, sides, numDice)
 }
 \arguments{
-\item{turns}{An integer representing the max number of turns to be played}
+\item{maxTurns}{An integer representing the max number of turns to be played}
 
 \item{sides}{An integer representing the size of dice to be rolled. Default is a six sided dice}
 

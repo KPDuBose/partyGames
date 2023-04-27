@@ -6,8 +6,7 @@ using namespace Rcpp;
 // [[Rcpp::plugins(openmp)]]
 
 
-List monopoly(int maxTurns, int sides, int numDice);
-
+arma::mat monopoly(int maxTurns, int sides, int numDice);
 
 // // [[Rcpp::export]]
 // arma::vec monoVec(int maxTurn, int sides, int numDice){
