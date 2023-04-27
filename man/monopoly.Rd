@@ -30,6 +30,9 @@ worry about money or bankruptcy rules.
 Additionally, whenever the player gets sent to jail, we assume that the player
 doesn't roll doubles and stays in jail until his third turn.
 
+Also note that though the function allows you to throw more than two dice, doubles
+will only compare the first two dice thrown to see if they are the same.
+
 The Chance and Community Chest cards are based on the 2008 Classic version of
 the game. The board is also based on the US 2008 Classic board.
 }

@@ -15,7 +15,8 @@ Suggests:
     tinytest
 RoxygenNote: 7.2.3
 LinkingTo: 
-    Rcpp
+    Rcpp,
+    RcppArmadillo
 Imports: 
     Rcpp,
     parallel,
