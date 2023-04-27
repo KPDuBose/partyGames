@@ -75,7 +75,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // monopoly
-List monopoly(int maxTurns, int sides, int numDice);
+arma::mat monopoly(int maxTurns, int sides, int numDice);
 RcppExport SEXP _partyGames_monopoly(SEXP maxTurnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -84,21 +84,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
     Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
     rcpp_result_gen = Rcpp::wrap(monopoly(maxTurns, sides, numDice));
-    return rcpp_result_gen;
-END_RCPP
-}
-// simMonopoly
-List simMonopoly(int numGames, int maxTurns, int sides, int numDice, int cores);
-RcppExport SEXP _partyGames_simMonopoly(SEXP numGamesSEXP, SEXP maxTurnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP, SEXP coresSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type numGames(numGamesSEXP);
-    Rcpp::traits::input_parameter< int >::type maxTurns(maxTurnsSEXP);
-    Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
-    Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
-    Rcpp::traits::input_parameter< int >::type cores(coresSEXP);
-    rcpp_result_gen = Rcpp::wrap(simMonopoly(numGames, maxTurns, sides, numDice, cores));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -138,7 +123,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_partyGames_leftRightElephant", (DL_FUNC) &_partyGames_leftRightElephant, 2},
     {"_partyGames_lrDieElephant", (DL_FUNC) &_partyGames_lrDieElephant, 4},
     {"_partyGames_monopoly", (DL_FUNC) &_partyGames_monopoly, 3},
-    {"_partyGames_simMonopoly", (DL_FUNC) &_partyGames_simMonopoly, 5},
     {"_partyGames_twoCoinDieElephant", (DL_FUNC) &_partyGames_twoCoinDieElephant, 5},
     {"_partyGames_twoCoinElephant", (DL_FUNC) &_partyGames_twoCoinElephant, 3},
     {NULL, NULL, 0}

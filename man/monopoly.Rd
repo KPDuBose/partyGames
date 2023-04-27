@@ -14,8 +14,7 @@ monopoly(maxTurns, sides, numDice)
 \item{numDice}{The number of dice of size 'sides' to be rolled. Default is two dice}
 }
 \value{
-A list of two vectors representing the number of times each space was
-landed on and the number of times doubles were rolled.
+A matrix representing the number of times
 }
 \description{
 This function allows you to look at and emulate playing a game of Monopoly

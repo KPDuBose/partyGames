@@ -1,4 +1,6 @@
-#include <Rcpp.h>
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(Rcpp)]]
+
 using namespace Rcpp;
 
 //'Play a game of Monopoly under specific circumstances
@@ -28,8 +30,7 @@ using namespace Rcpp;
 //'@param sides An integer representing the size of dice to be rolled. Default is a six sided dice
 //'@param numDice The number of dice of size 'sides' to be rolled. Default is two dice
 //'
-//'@return A list of two vectors representing the number of times each space was
-//'landed on and the number of times doubles were rolled.
+//'@return A matrix representing the number of times
 //'@examples
 //'#Default Function
 //'monopoly()
@@ -168,7 +169,7 @@ IntegerVector chanceDraw(
 }
 
 // [[Rcpp::export]]
-List monopoly(
+arma::mat monopoly(
   int maxTurns = 500,
   int sides = 6,
   int numDice = 2
@@ -203,11 +204,14 @@ List monopoly(
   IntegerVector dice;
   int roll;
 
+  //final matrix
+  arma::mat final(2, 40);
+
   //Set up turn
   while (count < maxTurns){
     count += 1;
     dTrack = 0;
-    countTrack.push_back(count);
+    // countTrack.push_back(count);
 
     //Roll the dice
     dice = diceRoll(sides, numDice);
@@ -222,7 +226,7 @@ List monopoly(
 
     //Append to spaceTracker
     spaceTracker.push_back(token);
-    dTracker.push_back(dTrack);
+    // dTracker.push_back(dTrack);
 
     //Draw a Community Chest card
     if (token == 3 || token == 18 || token == 34){
@@ -230,7 +234,7 @@ List monopoly(
         topCommunity -= 16;
       }
 
-      communityTrack.push_back(community[topCommunity]);
+      // communityTrack.push_back(community[topCommunity]);
 
       communityRes = communityDraw(
         token,
@@ -255,7 +259,7 @@ List monopoly(
         topChance -= 16;
       }
 
-      chanceTrack.push_back(chance[topChance]);
+      // chanceTrack.push_back(chance[topChance]);
 
       chanceRes = chanceDraw(
         token,
@@ -278,7 +282,7 @@ List monopoly(
     //Check if rolled doubles
     while (dice[0] == dice[1] && dTrack != 3){
       dTrack += 1;
-      dTracker.push_back(dTrack);
+      // dTracker.push_back(dTrack);
 
       //Check if third double rolled
       if (dTrack == 3){
@@ -308,7 +312,7 @@ List monopoly(
           topCommunity -= 14;
         }
 
-        communityTrack.push_back(community[topCommunity]);
+        // communityTrack.push_back(community[topCommunity]);
 
         communityRes = communityDraw(
           token,
@@ -334,7 +338,7 @@ List monopoly(
           topChance -= 16;
         }
 
-        chanceTrack.push_back(chance[topChance]);
+        // chanceTrack.push_back(chance[topChance]);
 
         chanceRes = chanceDraw(
           token,
@@ -356,17 +360,34 @@ List monopoly(
     }
   }
 
+  arma::uword n = spaceTracker.length();
 
-  int doubles = sum(dTracker);
+  arma::vec spaceTrackVec = as<arma::vec>(wrap(spaceTracker));
 
-  return List::create(
-    _["doubles"]    = doubles,
-    // _["dTracker"]   = dTracker,
-    _["space"]      = spaceTracker
-    // _["turns"]      = countTrack,
-    // _["count"]      = count,
-    // _["Community"]  = communityTrack
-  );
+  arma::vec spaces(40);
+  for (arma::uword j = 0; j < 40; j++){
+    for (arma::uword k = 0; k < n; k++){
+      if (spaceTrackVec(k) == j + 1){
+        spaces(j) += 1;
+      }
+    }
+  }
+
+
+  for (arma::uword i = 0; i < 40; i++){
+    final(0, i) = i + 1;
+
+  }
+
+  for (arma::uword j = 0; j < 40; j++){
+    final(1, j) = spaces(j);
+  }
+
+
+
+  // int doubles = sum(dTracker);
+
+  return final;
 }
 
 

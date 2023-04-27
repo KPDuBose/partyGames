@@ -169,8 +169,7 @@ lrDieElephant <- function(n, pheads, sides, numDice) {
 #'@param sides An integer representing the size of dice to be rolled. Default is a six sided dice
 #'@param numDice The number of dice of size 'sides' to be rolled. Default is two dice
 #'
-#'@return A list of two vectors representing the number of times each space was
-#'landed on and the number of times doubles were rolled.
+#'@return A matrix representing the number of times
 #'@examples
 #'#Default Function
 #'monopoly()
@@ -187,10 +186,6 @@ NULL
 
 monopoly <- function(maxTurns = 500L, sides = 6L, numDice = 2L) {
     .Call(`_partyGames_monopoly`, maxTurns, sides, numDice)
-}
-
-simMonopoly <- function(numGames, maxTurns, sides, numDice, cores = 1L) {
-    .Call(`_partyGames_simMonopoly`, numGames, maxTurns, sides, numDice, cores)
 }
 
 #'Play a White Elephant Game with dice and a coin
