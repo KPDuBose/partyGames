@@ -8,41 +8,29 @@ using namespace Rcpp;
 
 arma::mat monopoly(int maxTurns, int sides, int numDice);
 
-// // [[Rcpp::export]]
-// arma::vec monoVec(int maxTurn, int sides, int numDice){
-//   List mono = monopoly(maxTurn, sides, numDice);
-//
-//   arma::colvec monopolyVec = mono[1];
-//
-//   return monopolyVec;
-// }
+// [[Rcpp::export]]
+arma::mat simMonopoly(
+    arma::uword numGames = 10,
+    int maxTurns = 500,
+    int sides = 6,
+    int numDice = 2,
+    int cores = 1
+) {
+  arma::mat results(numGames, 40);
+  arma::mat game(2, 40);
 
-// // [[Rcpp::export]]
-// List simMonopoly(
-//     int numGames,
-//     int maxTurns,
-//     int sides,
-//     int numDice,
-//     int cores = 1
-// ) {
-//   arma::vec results(numGames);
-//
-//   arma::mat game(numGames);
-//
-//   // setting the cores
-//   omp_set_num_threads(cores);
-//
-// #pragma omp parallel for firstprivate(numGames, maxTurns, sides, numDice, results, game) default(none)
-//   for (int i = 0; i < numGames; i++){
-//     results = monoVec(maxTurns, sides, numDice);
-//     game[i] = results;
-//
-//
-//   }
-//
-//   return game;
-//
-// }
+  // setting the cores
+  omp_set_num_threads(cores);
+
+#pragma omp parallel for shared(numGames, maxTurns, sides, numDice, results, game) default(none)
+  for (arma::uword i = 0; i < numGames; i++){
+    game = monopoly(maxTurns, sides, numDice);
+    results.row(i) = game.row(1);
+  }
+
+  return results;
+
+}
 
 
 

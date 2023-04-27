@@ -188,6 +188,10 @@ monopoly <- function(maxTurns = 500L, sides = 6L, numDice = 2L) {
     .Call(`_partyGames_monopoly`, maxTurns, sides, numDice)
 }
 
+simMonopoly <- function(numGames = 10L, maxTurns = 500L, sides = 6L, numDice = 2L, cores = 1L) {
+    .Call(`_partyGames_simMonopoly`, numGames, maxTurns, sides, numDice, cores)
+}
+
 #'Play a White Elephant Game with dice and a coin
 #'
 #'Simulates a White Elephant party game. The gift starts at position "1" and
