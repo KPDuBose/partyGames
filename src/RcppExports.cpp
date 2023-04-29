@@ -88,12 +88,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // simMonopoly
-arma::mat simMonopoly(arma::uword numGames, int maxTurns, int sides, int numDice, int cores);
+arma::mat simMonopoly(int numGames, int maxTurns, int sides, int numDice, int cores);
 RcppExport SEXP _partyGames_simMonopoly(SEXP numGamesSEXP, SEXP maxTurnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP, SEXP coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::uword >::type numGames(numGamesSEXP);
+    Rcpp::traits::input_parameter< int >::type numGames(numGamesSEXP);
     Rcpp::traits::input_parameter< int >::type maxTurns(maxTurnsSEXP);
     Rcpp::traits::input_parameter< int >::type sides(sidesSEXP);
     Rcpp::traits::input_parameter< int >::type numDice(numDiceSEXP);
