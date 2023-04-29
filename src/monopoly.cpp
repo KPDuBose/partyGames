@@ -45,19 +45,19 @@ using namespace Rcpp;
 //'@export
 IntegerVector diceRoll(int sides, int numDice);
 
-IntegerVector cards(int numCards){
+arma::ivec cards(int numCards){
   //Shuffle the deck
-  IntegerVector chanceDeck = sample(numCards, numCards, false);
+  arma::ivec chanceDeck = sample(numCards, numCards, false);
 
   return chanceDeck;
 }
 
-IntegerVector communityDraw(
+arma::ivec communityDraw(
   int token,
   int card,
   int count
 ){
-  IntegerVector result;
+  arma::ivec result;
 
   //Cards that change position on the board
   //Move to Go
@@ -74,18 +74,18 @@ IntegerVector communityDraw(
   return result = {token, count, 0};
 }
 
-IntegerVector chanceDraw(
+arma::ivec chanceDraw(
   int token,
   int card,
   int count
 ){
-  IntegerVector result = {token, count, 0};
+  arma::ivec result = {token, count, 0};
 
   //Set locations of the utility spaces and railroad spaces
-  IntegerVector utility = {13,29};
-  IntegerVector railroads = {6, 16, 26, 36};
-  // IntegerVector closeRail;
-  // IntegerVector closeUtil;
+  arma::ivec utility = {13,29};
+  arma::ivec railroads = {6, 16, 26, 36};
+  // arma::ivec closeRail;
+  // arma::ivec closeUtil;
 
   //Cards that change position
 
@@ -175,33 +175,33 @@ arma::mat monopoly(
   int numDice = 2
 ){
   //Initialize and shuffle the Chance and Community decks
-  IntegerVector chance = cards(16);
-  IntegerVector community = cards(16);
+  arma::ivec chance = cards(16);
+  arma::ivec community = cards(16);
   int topChance = 0;
   int topCommunity = 0;
-  IntegerVector communityRes;
-  IntegerVector chanceRes;
+  arma::ivec communityRes;
+  arma::ivec chanceRes;
 
   //Track Community Chest and Chance card draws
-  IntegerVector chanceTrack;
-  IntegerVector communityTrack;
+  arma::ivec chanceTrack;
+  arma::ivec communityTrack;
 
   //Set up spaces tracker vector
   IntegerVector spaceTracker;
 
   //Turn counter
   int count = 0;
-  IntegerVector countTrack;
+  arma::ivec countTrack;
 
   //Double tracker
   int dTrack = 0;
-  IntegerVector dTracker;
+  arma::ivec dTracker;
 
   //Token movement
   int token = 1;
 
   //Dice vector set up
-  IntegerVector dice;
+  arma::ivec dice;
   int roll;
 
   //final matrix
