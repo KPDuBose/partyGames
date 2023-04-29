@@ -22,7 +22,7 @@ arma::mat simMonopoly(
   // setting the cores
   omp_set_num_threads(cores);
 
-#pragma omp parallel for shared(numGames, maxTurns, sides, numDice, results, game) default(none)
+#pragma omp parallel for shared(numGames, maxTurns, sides, numDice, results) firstprivate(game) default(none)
   for (arma::uword i = 0; i < numGames; i++){
     game = monopoly(maxTurns, sides, numDice);
     results.row(i) = game.row(1);
@@ -31,6 +31,3 @@ arma::mat simMonopoly(
   return results;
 
 }
-
-
-
