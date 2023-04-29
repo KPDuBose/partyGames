@@ -2,6 +2,7 @@
 #include <omp.h>
 #endif
 
+#include<random>
 
 #include <RcppArmadillo.h>
 using namespace Rcpp;
@@ -22,6 +23,7 @@ std::vector< std::vector< int > > simMonopoly(
 ) {
   std::vector < std::vector< int > > results(numGames, std::vector<int>(40));
 
+
 #ifdef _OPENMP
   // setting the cores
   omp_set_num_threads(cores);
@@ -35,6 +37,8 @@ std::vector< std::vector< int > > simMonopoly(
 
   std::vector< int > nreplicates(effective_ncores, 0);
   std::vector< int > nreplicates_csum(effective_ncores, 0);
+  std::vector< int > start(effective_ncores, 0);
+  std::vector< int > end(effective_ncores, numGames);
   int sums = 0u;
   for (int i = 0; i < effective_ncores; i++){
     nreplicates[i] = static_cast<int>(std::floor(numGames/effective_ncores));
@@ -42,29 +46,46 @@ std::vector< std::vector< int > > simMonopoly(
     nreplicates_csum[i] = sums;
 
     sums += nreplicates[i];
+
   }
 
   if (sums < numGames) nreplicates[effective_ncores - 1] += (numGames - sums);
 
-#pragma omp parallel for shared(numGames, nreplicates, effective_ncores, maxTurns, sides, numDice, results) default(none)
+  for (int i = 0; i < effective_ncores; i++){
+    start[i] = nreplicates_csum[i];
+  }
+
+  for (int i = 0; i < effective_ncores - 1; i++){
+    end[i] = start[i + 1];
+  }
+
+  end[effective_ncores - 1] = numGames;
+
+
+#pragma omp parallel
 {
-    auto thd = omp_get_thread_num();
-    for (int i = 0; i < nreplicates[thd]; i++){
-      arma::mat game = monopoly(maxTurns, sides, numDice);
 
-      arma::rowvec gamerow = game.row(1);
+  auto iam = omp_get_thread_num();
+  arma::mat game(2, 40);
+  arma::rowvec gamerow = game.row(1);
+  std::vector<int> vec(gamerow.begin(), gamerow.end());
 
-      std::vector<int> vec(gamerow.begin(), gamerow.end());
+#pragma omp parallel for shared(start, iam, game, gamerow end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
+  for (int i = start[iam]; i < end[iam]; i++){
 
-      for (int j = 0; j < 40; j++){
+    for (int j = 0; j < 40; j++){
 
-        results[i][j] += vec[j];
-      }
+      game = monopoly(maxTurns, sides, numDice);
+      gamerow = game.row(1);
+      vec(gamerow.begin(), gamerow.end());
+
+      results[i][j] = vec[j];
     }
- }
+  }
+}
 
 
-  return results;
+return results;
 
 }
 
