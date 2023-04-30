@@ -39,6 +39,7 @@ std::vector < std::vector< int > > simMonopoly(
   std::vector< int > start(effective_ncores, 0);
   std::vector< int > end(effective_ncores, numGames);
 
+
   int sums = 0u;
   for (int i = 0; i < effective_ncores; i++){
     nreplicates[i] = static_cast<int>(std::floor(numGames/effective_ncores));
@@ -65,6 +66,8 @@ std::vector < std::vector< int > > simMonopoly(
 {
 
   int iam = omp_get_thread_num();
+  auto (*game)(int, int, int) = &monopoly;
+
   // std::vector<int> gamerow(40);
 
 
@@ -76,7 +79,7 @@ std::vector < std::vector< int > > simMonopoly(
 
 
 
-      results[i] = monopoly(maxTurns, sides, numDice);
+      results[i] = (*game)(maxTurns, sides, numDice);
     }
 }
 
