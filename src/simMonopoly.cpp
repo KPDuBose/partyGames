@@ -65,18 +65,18 @@ std::vector < std::vector< int > > simMonopoly(
 {
 
   int iam = omp_get_thread_num();
-  std::vector<int> gamerow(40);
+  // std::vector<int> gamerow(40);
 
 
   for (int i = start[iam]; i < end[iam]; i++){
 
-    gamerow = monopoly(maxTurns, sides, numDice);
+    // gamerow = monopoly(maxTurns, sides, numDice);
 
     // std::vector<int> vec(gamerow.begin(), gamerow.end());
 
 
 
-      results[i] = gamerow;
+      results[i] = monopoly(maxTurns, sides, numDice);
     }
 }
 
