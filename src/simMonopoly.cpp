@@ -55,29 +55,25 @@ std::vector< std::vector< int > > simMonopoly(
     start[i] = nreplicates_csum[i];
   }
 
+  if (effective_ncores > 1){
   for (int i = 0; i < effective_ncores - 1; i++){
     end[i] = start[i + 1];
-  }
-
-  end[effective_ncores - 1] = numGames;
+  }}
 
 
-#pragma omp parallel
-{
+
+#pragma omp parallel for shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
+for (int k = 0; k < effective_ncores; k++){
 
   auto iam = omp_get_thread_num();
-  arma::mat game(2, 40);
-  arma::rowvec gamerow = game.row(1);
-  std::vector<int> vec(gamerow.begin(), gamerow.end());
 
-#pragma omp parallel for shared(start, iam, game, gamerow end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
   for (int i = start[iam]; i < end[iam]; i++){
 
-    for (int j = 0; j < 40; j++){
+    arma::mat game = monopoly(maxTurns, sides, numDice);
+    arma::rowvec gamerow = game.row(1);
+    std::vector<int> vec(gamerow.begin(), gamerow.end());
 
-      game = monopoly(maxTurns, sides, numDice);
-      gamerow = game.row(1);
-      vec(gamerow.begin(), gamerow.end());
+    for (int j = 0; j < 40; j++){
 
       results[i][j] = vec[j];
     }
