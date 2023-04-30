@@ -4,7 +4,6 @@
 
 #include<random>
 
-#include <RcppArmadillo.h>
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -61,27 +60,24 @@ std::vector < std::vector< int > > simMonopoly(
     end[i] = start[i + 1];
   }}
 
-  std::vector<int> gamerow(40);
 
-#pragma omp parallel shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) firstprivate(gamerow) default(none)
+#pragma omp parallel shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
 {
 
   int iam = omp_get_thread_num();
+  std::vector<int> gamerow(40);
 
 
-
-//#pragma omp parallel for shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) firstprivate(iam) default(none)
   for (int i = start[iam]; i < end[iam]; i++){
 
     gamerow = monopoly(maxTurns, sides, numDice);
 
     // std::vector<int> vec(gamerow.begin(), gamerow.end());
 
-    for (int j = 0; j < 40; j++){
 
-      results[i][j] = gamerow[j];
+
+      results[i] = gamerow;
     }
-  }
 }
 
 return results;
