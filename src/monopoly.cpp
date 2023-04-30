@@ -169,7 +169,7 @@ arma::ivec chanceDraw(
 }
 
 // [[Rcpp::export]]
-arma::mat monopoly(
+std::vector<int> monopoly(
   int maxTurns = 500,
   int sides = 6,
   int numDice = 2
@@ -383,11 +383,15 @@ arma::mat monopoly(
     final(1, j) = spaces(j);
   }
 
+  std::vector<int> actfinal(40);
 
+  for (int i = 0; i < 40; i++){
+    actfinal[i] = final.row(1)[i];
+  }
 
   // int doubles = sum(dTracker);
 
-  return final;
+  return actfinal;
 }
 
 
