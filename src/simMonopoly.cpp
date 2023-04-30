@@ -5,6 +5,7 @@
 #include<random>
 
 #include <RcppArmadillo.h>
+#include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -14,7 +15,7 @@ using namespace Rcpp;
 arma::mat monopoly(int maxTurns, int sides, int numDice);
 
 // [[Rcpp::export]]
-std::vector< std::vector< int > > simMonopoly(
+std::vector < std::vector< int > > simMonopoly(
     int numGames = 10,
     int maxTurns = 500,
     int sides = 6,
@@ -67,6 +68,7 @@ for (int k = 0; k < effective_ncores; k++){
 
   auto iam = omp_get_thread_num();
 
+
   for (int i = start[iam]; i < end[iam]; i++){
 
     arma::mat game = monopoly(maxTurns, sides, numDice);
@@ -79,7 +81,6 @@ for (int k = 0; k < effective_ncores; k++){
     }
   }
 }
-
 
 return results;
 

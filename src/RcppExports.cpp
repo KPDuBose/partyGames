@@ -88,7 +88,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // simMonopoly
-std::vector< std::vector< int > > simMonopoly(int numGames, int maxTurns, int sides, int numDice, int cores);
+std::vector < std::vector< int > > simMonopoly(int numGames, int maxTurns, int sides, int numDice, int cores);
 RcppExport SEXP _partyGames_simMonopoly(SEXP numGamesSEXP, SEXP maxTurnsSEXP, SEXP sidesSEXP, SEXP numDiceSEXP, SEXP coresSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

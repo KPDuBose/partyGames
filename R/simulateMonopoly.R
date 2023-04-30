@@ -22,7 +22,7 @@ simulateMonopoly <- function(
     sides = 6,
     numDice = 2,
     cores = 1){
- ans <- partyGames:::simMonopoly(numGames, maxTurns, sides, numDice, cores)
+ ans <- simMonopoly(numGames, maxTurns, sides, numDice, cores)
  ans <- structure(ans, class = "monopoly")
 
  return(ans)
