@@ -42,6 +42,18 @@ Now, let's roll three 100-sided dice just to see what it looks like:
 diceSum(100, 3)
 ```
 
+## diceRoll
+
+Additionally, you can roll dice without summing up the dice using the `diceRoll`. It functions similarly to `diceSum`.
+
+```{r}
+# Roll two six-sided dice
+diceRoll(6, 2)
+
+# Roll three twenty-sided dice
+diceRoll(20, 3)
+```
+
 # White Elephant Games
 
 The package can also simulate various white elephant games with some differing rules since everyone plays this game differently or knows it by a different name.
@@ -144,6 +156,16 @@ This combines the two coin version of the game with the added effect of rolling 
 twoCoinDieElephant(15, 0.3, 0.7, 4, 2)
 ```
 
+## Monopoly
+
+This plays a game of monopoly of a specified number of turns. It returns a matrix representing how many times each space was landed on, with the first number representing the "Pass Go" space and final number representing the "Boardwalk" space. This function also lets you change the number of dice used (see documentation for rules on doubles when using more than two dice). You can also change how many sides the dice have.   
+
+```{r}
+# Play a game of 500 turns with two six-sided dice
+monopoly(500, 6, 2)
+# Play a game of 500 turns with three twenty-sided dice
+monopoly(500, 20, 3)
+```
 
 # Simulation
 
@@ -193,4 +215,25 @@ plot.partyGames(games)
 plot.partyGames(games.summary)
 ```
 
+## Monopoly
 
+You can simulate additional games of Monopoly using the `simulateMonopoly` function. We are currently attempting to include an ability to parallelize the function, but this is inconsistent as of this version of the package. It is recommended that you do not currently use more than 1 core. 
+
+```{r}
+monoGame <- simulateMonopoly()
+monoGame
+```
+
+This returns a `list` type object where each entry in the list represnets a single game of Monopoly. 
+
+The summary function related to monopoly will return a sum of how many times each space was landed on throughout each game. 
+
+```{r}
+summary.monopoly(monoGame)
+```
+
+The plot function returns a barplot showing how many times each space is landed on throughout the different games. 
+
+```{r, fig.align='center', fig.height=3, fig.width=5}
+plot.monopoly(monoGame)
+```
