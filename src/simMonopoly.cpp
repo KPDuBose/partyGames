@@ -2,6 +2,7 @@
 #include <omp.h>
 #endif
 
+#include<stdio.h>
 #include<random>
 
 #include <Rcpp.h>
@@ -68,18 +69,17 @@ std::vector < std::vector< int > > simMonopoly(
   int iam = omp_get_thread_num();
   auto (*game)(int, int, int) = &monopoly;
 
-  // std::vector<int> gamerow(40);
+  std::vector<int> gamerow(40);
 
 
   for (int i = start[iam]; i < end[iam]; i++){
 
-    // gamerow = monopoly(maxTurns, sides, numDice);
+    gamerow = (*game)(maxTurns, sides, numDice);
 
-    // std::vector<int> vec(gamerow.begin(), gamerow.end());
+    for (int j = 0; j < 40; j ++){
+        results[i][j] = gamerow[j];
 
-
-
-      results[i] = (*game)(maxTurns, sides, numDice);
+      }
     }
 }
 
