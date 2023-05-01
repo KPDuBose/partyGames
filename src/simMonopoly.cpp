@@ -37,8 +37,8 @@ std::vector < std::vector< int > > simMonopoly(
 
   std::vector< int > nreplicates(effective_ncores, 0);
   std::vector< int > nreplicates_csum(effective_ncores, 0);
-  std::vector< int > start(effective_ncores, 0);
-  std::vector< int > end(effective_ncores, numGames);
+  std::vector < std::vector< double > > start(effective_ncores);
+  std::vector < std::vector< double > > end(effective_ncores);
 
 
   int sums = 0u;
@@ -53,37 +53,36 @@ std::vector < std::vector< int > > simMonopoly(
 
   if (sums < numGames) nreplicates[effective_ncores - 1] += (numGames - sums);
 
+
+  std::vector< std::vector< double > > res(effective_ncores);
+  for (int i = 0; i < effective_ncores; ++i)
+    res[i].resize(nreplicates[i]*40);
+
   for (int i = 0; i < effective_ncores; i++){
-    start[i] = nreplicates_csum[i];
+    start[i].resize(nreplicates);
+    end[i].resize(nreplicates);
   }
 
-  if (effective_ncores > 1){
-  for (int i = 0; i < effective_ncores - 1; i++){
-    end[i] = start[i + 1];
-  }}
-
-
-#pragma omp parallel shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
+  for (int i = 0; i < effective_ncores; i++){
+    for (int j = 0; i < nreplicates[i]; i++){
+      start[i][j] = j * 40;
+      end[i][j] = start[i][j] + 40;
+    }
+  }
+#pragma omp parallel shared(start, end, numGames, nreplicates, effective_ncores, maxTurns, sides, numDice, res) default(none)
 {
 
   int iam = omp_get_thread_num();
-  auto (*game)(int, int, int) = &monopoly;
 
-  std::vector<int> gamerow(40);
+  for (int i = 0; i < nreplicates[iam]; i++){
+    for (int j = start[iam][i]; j < end[iam][j]; j++){
+      for (int k = 0; k < 40; k++) res[iam][j] = monopoly(numGames, sides, numDice)[k];
 
-
-  for (int i = start[iam]; i < end[iam]; i++){
-
-    gamerow = (*game)(maxTurns, sides, numDice);
-
-    for (int j = 0; j < 40; j ++){
-        results[i][j] = gamerow[j];
-
-      }
     }
+  }
 }
 
-return results;
+return res;
 
 }
 
