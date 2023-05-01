@@ -17,9 +17,10 @@ plot.monopoly <- function(x, ...){
     }
 
     graphics::barplot(
-      x,
+      as.numeric(x),
       ylim = c(0, max(x) + 25),
       sub = sprintf("Distribution of simulated monopoly games"),
+      names.arg = 1:40,
       main = "Which space is landed on?",
       col = "cornflowerblue",
       border = "dimgray"

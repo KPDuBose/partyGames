@@ -30,11 +30,11 @@ You can install the development version of partyGames like so:
 devtools::install_github("KPDuBose/partyGames")
 ```
 
-## Example
+## White Elephant Games
 
 Simulate 1500 White Elephant Games under different conditions.
 
-```{r example}
+```{r example-monopoly}
 library(partyGames)
 games <- simulateElephant(15, dice = TRUE, coins = 1, iter = 1500, pheads = 0.5, sides = 6, numDice = 1)
 summary.partyGames(games)
@@ -43,3 +43,18 @@ plot.partyGames(games)
 plot.partyGames(summary.partyGames(games))
 ```
 
+## Monopoly Simulation
+
+Additionally, you can simulate Monopoly games based on the 2008 US version of the game. 
+
+Note: We are attempting to integrate OpenMP into the code to facilitate parallelization of the code and allow faster responses times for the simulation. This is not consistent yet and we recomend that users do not attempt to parallelize the code yet.
+
+```{r}
+
+library(partyGames)
+monopolyGame <- simulateMonopoly()
+monopolyGame
+summary.monopoly(monopolyGame)
+plot.monopoly(monopolyGame)
+
+```
