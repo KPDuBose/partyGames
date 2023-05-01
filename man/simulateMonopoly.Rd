@@ -21,7 +21,7 @@ simulateMonopoly(
 
 \item{numDice}{Number of dice rolled}
 
-\item{cores}{Number of cores to be used}
+\item{cores}{Number of cores to be used.Currently only rund consistently when equal to 1.}
 }
 \value{
 A matrix of class `monopoly`
@@ -32,6 +32,8 @@ A general function to simulate various multiple single-player Monopoly games.
 \details{
 This function uses Open MP to parallelize code and run a few different games
 at the same time.
+
+Currently, this only runs consistently when cores = 1.
 }
 \seealso{
 [monopoly()]
