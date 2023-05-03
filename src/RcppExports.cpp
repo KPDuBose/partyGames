@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // diceRoll
-IntegerVector diceRoll(int sides, int numDice);
+std::vector<int> diceRoll(int sides, int numDice);
 RcppExport SEXP _partyGames_diceRoll(SEXP sidesSEXP, SEXP numDiceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

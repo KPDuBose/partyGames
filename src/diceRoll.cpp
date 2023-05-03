@@ -1,3 +1,5 @@
+#include<random>
+
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -19,11 +21,32 @@ using namespace Rcpp;
 //'diceRoll(100,2)
 //'@export
 // [[Rcpp::export]]
-IntegerVector diceRoll(
+std::vector<int> diceRoll(
   int sides = 6,
   int numDice = 2
 ){
-  IntegerVector roll = sample(sides, numDice, true);
+  std::random_device rd;
+  std::mt19937 gen(rd());
 
-  return roll;
+  std::vector<int> results(numDice);
+
+  std::uniform_int_distribution<> dice(1, sides);
+
+  for (int i = 0; i < numDice; i++){
+    results[i] = dice(gen);
+  }
+
+  return results;
 }
+
+
+
+
+// IntegerVector diceRoll(
+//   int sides = 6,
+//   int numDice = 2
+// ){
+//   IntegerVector roll = sample(sides, numDice, true);
+//
+//   return roll;
+// }

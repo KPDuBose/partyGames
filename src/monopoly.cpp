@@ -1,5 +1,6 @@
 #include <RcppArmadillo.h>
-// [[Rcpp::depends(Rcpp)]]
+#include <random>
+// [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
 
@@ -43,21 +44,31 @@ using namespace Rcpp;
 //'and for the \href{https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/}{Chance and Community Chest Cards}
 //'
 //'@export
-IntegerVector diceRoll(int sides, int numDice);
+std::vector<int> diceRoll(int sides, int numDice);
 
-arma::ivec cards(int numCards){
-  //Shuffle the deck
-  arma::ivec chanceDeck = sample(numCards, numCards, false);
+std::vector<int> cards(int numCards){
+  std::random_device rd;
+  std::mt19937 gen(rd());
 
-  return chanceDeck;
+  std::vector<int> results(numCards);
+
+  std::uniform_int_distribution<> deck(1, numCards);
+
+  for (int i = 0; i < numCards; i++){
+    results[i] = i + 1;
+  }
+
+  std::shuffle(results.begin(), results.end(), gen);
+
+  return results;
 }
 
-arma::ivec communityDraw(
+std::vector<int> communityDraw(
   int token,
   int card,
   int count
 ){
-  arma::ivec result;
+  std::vector<int> result;
 
   //Cards that change position on the board
   //Move to Go
@@ -74,18 +85,18 @@ arma::ivec communityDraw(
   return result = {token, count, 0};
 }
 
-arma::ivec chanceDraw(
+std::vector<int> chanceDraw(
   int token,
   int card,
   int count
 ){
-  arma::ivec result = {token, count, 0};
+  std::vector<int> result = {token, count, 0};
 
   //Set locations of the utility spaces and railroad spaces
-  arma::ivec utility = {13,29};
-  arma::ivec railroads = {6, 16, 26, 36};
-  // arma::ivec closeRail;
-  // arma::ivec closeUtil;
+  std::vector<int> utility = {13,29};
+  std::vector<int> railroads = {6, 16, 26, 36};
+  // std::vector<int> closeRail;
+  // std::vector<int> closeUtil;
 
   //Cards that change position
 
@@ -175,33 +186,33 @@ std::vector<int> monopoly(
   int numDice = 2
 ){
   //Initialize and shuffle the Chance and Community decks
-  arma::ivec chance = cards(16);
-  arma::ivec community = cards(16);
+  std::vector<int> chance = cards(16);
+  std::vector<int> community = cards(16);
   int topChance = 0;
   int topCommunity = 0;
-  arma::ivec communityRes;
-  arma::ivec chanceRes;
+  std::vector<int> communityRes;
+  std::vector<int> chanceRes;
 
   //Track Community Chest and Chance card draws
-  arma::ivec chanceTrack;
-  arma::ivec communityTrack;
+  std::vector<int> chanceTrack;
+  std::vector<int> communityTrack;
 
   //Set up spaces tracker vector
-  IntegerVector spaceTracker;
+  std::vector<int> spaceTracker;
 
   //Turn counter
   int count = 0;
-  arma::ivec countTrack;
+  std::vector<int> countTrack;
 
   //Double tracker
   int dTrack = 0;
-  arma::ivec dTracker;
+  std::vector<int> dTracker;
 
   //Token movement
   int token = 1;
 
   //Dice vector set up
-  arma::ivec dice;
+  std::vector<int> dice;
   int roll;
 
   //final matrix
@@ -214,8 +225,11 @@ std::vector<int> monopoly(
     // countTrack.push_back(count);
 
     //Roll the dice
+    roll = 0;
     dice = diceRoll(sides, numDice);
-    roll = sum(dice);
+    for (int i = 0; i < numDice; i++){
+      roll += dice[i];
+    }
 
     token += roll;
 
@@ -293,8 +307,11 @@ std::vector<int> monopoly(
       }
 
       //Roll the dice
+      roll = 0;
       dice = diceRoll(sides, numDice);
-      roll = sum(dice);
+      for (int i = 0; i < numDice; i++){
+        roll += dice[i];
+      }
 
       token += roll;
 
@@ -360,38 +377,38 @@ std::vector<int> monopoly(
     }
   }
 
-  arma::uword n = spaceTracker.length();
+  int n = spaceTracker.size();
 
-  arma::vec spaceTrackVec = as<arma::vec>(wrap(spaceTracker));
+  // std::vector<int> spaceTrackVec = as<arma::vec>(wrap(spaceTracker));
 
-  arma::vec spaces(40);
-  for (arma::uword j = 0; j < 40; j++){
-    for (arma::uword k = 0; k < n; k++){
-      if (spaceTrackVec(k) == j + 1){
-        spaces(j) += 1;
+  std::vector<int> spaces(40);
+  for (int j = 0; j < 40; j++){
+    for (int k = 0; k < n; k++){
+      if (spaceTracker[k] == j + 1){
+        spaces[j] += 1;
       }
     }
   }
 
 
-  for (arma::uword i = 0; i < 40; i++){
-    final(0, i) = i + 1;
-
-  }
-
-  for (arma::uword j = 0; j < 40; j++){
-    final(1, j) = spaces(j);
-  }
-
-  std::vector<int> actfinal(40);
-
-  for (int i = 0; i < 40; i++){
-    actfinal[i] = final.row(1)[i];
-  }
+  // for (int i = 0; i < 40; i++){
+  //   final(0, i) = i + 1;
+  //
+  // }
+  //
+  // for (int j = 0; j < 40; j++){
+  //   final(1, j) = spaces(j);
+  // }
+  //
+  // std::vector<int> actfinal(40);
+  //
+  // for (int i = 0; i < 40; i++){
+  //   actfinal[i] = final.row(1)[i];
+  // }
 
   // int doubles = sum(dTracker);
 
-  return actfinal;
+  return spaces;
 }
 
 

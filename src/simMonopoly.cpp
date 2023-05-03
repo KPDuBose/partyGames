@@ -5,7 +5,7 @@
 #include<stdio.h>
 #include<random>
 
-#include <Rcpp.h>
+#include <RcppArmadillo.h>
 using namespace Rcpp;
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -13,6 +13,7 @@ using namespace Rcpp;
 
 
 std::vector<int> monopoly(int maxTurns, int sides, int numDice);
+
 
 // [[Rcpp::export]]
 std::vector < std::vector< int > > simMonopoly(
@@ -67,19 +68,20 @@ std::vector < std::vector< int > > simMonopoly(
 {
 
   int iam = omp_get_thread_num();
-  auto (*game)(int, int, int) = &monopoly;
+  // auto (* game)(int, int, int) = monopoly;
 
-  std::vector<int> gamerow(40);
+  std::vector<int> gamerow;
 
 
   for (int i = start[iam]; i < end[iam]; i++){
 
-    gamerow = (*game)(maxTurns, sides, numDice);
+    gamerow = monopoly(maxTurns, sides, numDice);
 
     for (int j = 0; j < 40; j ++){
       results[i][j] = gamerow[j];
 
     }
+    gamerow.clear();
   }
 }
 
