@@ -159,7 +159,11 @@ lrDieElephant <- function(n, pheads, sides, numDice) {
 #'will only compare the first two dice thrown to see if they are the same.
 #'
 #'The Chance and Community Chest cards are based on the 2008 Classic version of
-#'the game. The board is also based on the US 2008 Classic board.
+#'the game. The board is also based on the US 2008 Classic board, with the fist
+#'integer in the vector representing how many times the "Go" space was landed on,
+#'the second integer representing how many times "Mediterranean Avenue" was
+#'landed on, and so forth until the last integer, which represents "Boardwalk."
+#'
 #'
 #'@name monopoly
 #'

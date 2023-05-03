@@ -21,7 +21,7 @@ plot.monopoly <- function(x, ...){
       ylim = c(0, max(x) + 25),
       sub = sprintf("Distribution of simulated monopoly games"),
       names.arg = 1:40,
-      main = "Which space is landed on?",
+      main = "Which space is landed on most?",
       col = "cornflowerblue",
       border = "dimgray"
     )

@@ -47,8 +47,6 @@ plot.partyGames(summary.partyGames(games))
 
 Additionally, you can simulate Monopoly games based on the 2008 US version of the game. 
 
-Note: We are attempting to integrate OpenMP into the code to facilitate parallelization of the code and allow faster responses times for the simulation. This is not consistent yet and we recomend that users do not attempt to parallelize the code yet.
-
 ```{r}
 
 library(partyGames)
@@ -58,3 +56,15 @@ summary.monopoly(monopolyGame)
 plot.monopoly(monopolyGame)
 
 ```
+
+Parallel computing (made possible in this case through Open MP) is also possible for this.
+
+```{r}
+monoParallel <- simulateMonopoly(numGames = 20, 
+                                 maxTurns = 500, 
+                                 sides    = 6, 
+                                 numDice  = 2, 
+                                 cores    = 3)
+
+summary.monopoly(monoParallel)
+plot.monopoly(monoParallel)

@@ -1,7 +1,7 @@
 Package: partyGames
 Type: Package
 Title: Simulate Party Games
-Version: 0.1.0
+Version: 0.1.1
 Author: Kline DuBose
 Maintainer: Kline DuBose <kline.dubose@hotmail.com>
 Description: Simulation tools that allow users to play party games and simulate
