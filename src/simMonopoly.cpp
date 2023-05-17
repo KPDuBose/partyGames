@@ -67,8 +67,11 @@ std::vector < std::vector< int > > simMonopoly(
 #pragma omp parallel shared(start, end, numGames, effective_ncores, maxTurns, sides, numDice, results) default(none)
 {
 
+#ifdef _OPENMP
   int iam = omp_get_thread_num();
-  // auto (* game)(int, int, int) = monopoly;
+#else
+  int iam = 0;
+#endif
 
   std::vector<int> gamerow;
 
