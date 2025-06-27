@@ -26,7 +26,7 @@ The goal of partyGames is to simulate various party games and help you devise a 
 You can install the development version of partyGames like so:
 
 ``` r
-# install.package("devtools")
+# install.packages("devtools")
 devtools::install_github("KPDuBose/partyGames")
 ```
 
